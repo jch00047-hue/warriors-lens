@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import type { BlogArticle } from '../lib/types'
+
+type BlogListItem = {
+  id: string
+  title: string
+  slug: string
+  excerpt: string | null
+  created_at: string
+  featured: boolean
+}
 
 export default function Blog() {
-  const [articles, setArticles] = useState<BlogArticle[]>([])
+  const [articles, setArticles] = useState<BlogListItem[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -58,7 +66,11 @@ export default function Blog() {
                 <p className="text-neutral-400 text-sm leading-relaxed mb-3">{article.excerpt}</p>
               )}
               <p className="text-neutral-600 text-xs">
-                {new Date(article.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                {new Date(article.created_at).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
               </p>
             </Link>
           ))}
