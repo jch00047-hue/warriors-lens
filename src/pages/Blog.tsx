@@ -62,9 +62,13 @@ export default function Blog() {
               <h2 className="font-display text-xl text-neutral-100 group-hover:text-amber-400 transition-colors mb-2">
                 {article.title}
               </h2>
+
               {article.excerpt && (
-                <p className="text-neutral-400 text-sm leading-relaxed mb-3">{article.excerpt}</p>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-3">
+                  {article.excerpt}
+                </p>
               )}
+
               <p className="text-neutral-600 text-xs">
                 {new Date(article.created_at).toLocaleDateString('en-US', {
                   year: 'numeric',
